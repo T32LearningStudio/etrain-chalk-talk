@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-TRAIN Fellow Resource Packet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #10b981;
+        }
+        
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .overview-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #10b981;
+        }
+        
+        .overview-card h3 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .what-is-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .comparison-table th {
+            background: #10b981;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f8fafc;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .impact-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .impact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+        
+        .impact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.2);
+            border-color: #10b981;
+        }
+        
+        .impact-letter {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .impact-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #10b981;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 80px;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 15px;
+            top: 5px;
+            width: 30px;
+            height: 30px;
+            background: #10b981;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #10b981;
+        }
+        
+        .week-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .week-dates {
+            color: #64748b;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .template-section {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #10b981;
+        }
+        
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .hook-generator {
+            background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+        
+        .hook-approaches {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .hook-approach {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #10b981;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+        
+        .presentation-day {
+            background: linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+        }
+        
+        .checkbox {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .overview-grid, .impact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                padding-left: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 E-TRAIN Fellow Resource Packet</h1>
+            <p>Your Complete Guide to Chalk Talk Excellence</p>
+            <div style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+                <strong>NUCATS E-TRAIN T32 Program</strong> - A training initiative funded by the National Center for Advancing Translational Science (NCATS)
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">📋 Program Overview</h2>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <h3>🗓️ Duration</h3>
+                    <p>5 weeks of structured development<br>
+                    <strong>Aug 15 - Sep 19, 2024</strong></p>
+                </div>
+                <div class="overview-card">
+                    <h3>⏱️ Time Investment</h3>
+                    <p>3 hours total across 5 weeks<br>
+                    <strong>Just 35 minutes per week</strong></p>
+                </div>
+                <div class="overview-card">
+                    <h3>👥 Support System</h3>
+                    <p>Buddy partnerships for feedback<br>
+                    <strong>Peer collaboration built-in</strong></p>
+                </div>
+                <div class="overview-card">
+                    <h3>🎯 End Goal</h3>
+                    <p>Master chalk talk skills through practice<br>
+                    <strong>Ready for success</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="what-is-section">
+                <h2 class="section-title">🤔 What is a Chalk Talk?</h2>
+                <p style="font-size: 1.1em; margin-bottom: 20px;">
+                    A chalk talk is an informal 50-minute presentation where you'll discuss your research while writing/drawing on a whiteboard. For this E-TRAIN program, we're practicing with a 15-minute version to build your experience and confidence. Think of it as a conversation about your work, not a formal lecture.
+                </p>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Chalk Talk ✅</th>
+                            <th>Traditional Presentation ❌</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Interactive, conversational tone</td>
+                            <td>Formal, one-way presentation</td>
+                        </tr>
+                        <tr>
+                            <td>Write/draw on whiteboard live</td>
+                            <td>Pre-made slides with animations</td>
+                        </tr>
+                        <tr>
+                            <td>50 minutes (15 min for E-TRAIN practice)</td>
+                            <td>30-60 minute formal talk</td>
+                        </tr>
+                        <tr>
+                            <td>Focus on research approach</td>
+                            <td>Heavy emphasis on results</td>
+                        </tr>
+                        <tr>
+                            <td>Demonstrate thinking process</td>
+                            <td>Present polished conclusions</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <h4 style="color: #10b981; margin-bottom: 10px;">💡 Key Insight</h4>
+                    <p><strong>They want to see how you think, not just what you've accomplished.</strong> Your chalk talk should demonstrate your scientific reasoning, problem-solving approach, and ability to communicate complex ideas clearly. Our 15-minute E-TRAIN version gives you focused practice on these essential skills.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">🏗️ The IMPACT Structure</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em;">
+                IMPACT is your framework for a compelling chalk talk presentation. Each letter represents a key component that builds toward a powerful presentation. While a full chalk talk is typically 50 minutes, we're using a condensed 15-minute version for E-TRAIN training.
+            </p>
+            
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-letter">I</div>
+                    <div class="impact-title">IGNITE (2 minutes)</div>
+                    <p><strong>Attention-grabbing opening hook</strong></p>
+                    <p>Start with a compelling story, statistic, or question that immediately connects your audience to why your research matters.</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Patient story or clinical scenario</li>
+                        <li>Surprising statistic</li>
+                        <li>Thought-provoking question</li>
+                    </ul>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-letter">M</div>
+                    <div class="impact-title">MAP (2 minutes)</div>
+                    <p><strong>Problem identification and knowledge gap</strong></p>
+                    <p>Clearly define the problem you're addressing and the specific gap in current knowledge that your research fills.</p>
+                    <ul style="margin-top: 10px;">
+                        <li>What's the current state?</li>
+                        <li>What's missing or unknown?</li>
+                        <li>Why does this matter?</li>
+                    </ul>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-letter">P</div>
+                    <div class="impact-title">PRESENT (1 minute)</div>
+                    <p><strong>Research aims overview</strong></p>
+                    <p>Concisely present your two main research aims that address the knowledge gap you've identified.</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Aim 1: [Brief description]</li>
+                        <li>Aim 2: [Brief description]</li>
+                        <li>How they connect</li>
+                    </ul>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-letter">A</div>
+                    <div class="impact-title">ADDRESS (4 minutes)</div>
+                    <p><strong>First aim in detail</strong></p>
+                    <p>Deep dive into your first aim with specific methods, expected outcomes, and potential challenges.</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Detailed methodology</li>
+                        <li>Expected results</li>
+                        <li>Alternative approaches</li>
+                    </ul>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-letter">C</div>
+                    <div class="impact-title">CONTINUE (4 minutes)</div>
+                    <p><strong>Second aim in detail</strong></p>
+                    <p>Thoroughly explain your second aim, showing how it builds on or complements the first aim.</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Connection to Aim 1</li>
+                        <li>Unique methodology</li>
+                        <li>Anticipated outcomes</li>
+                    </ul>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-letter">T</div>
+                    <div class="impact-title">TRANSLATE (2 minutes)</div>
+                    <p><strong>Broader impact and future directions</strong></p>
+                    <p>Connect your research back to the bigger picture and its potential impact on the field or patient care.</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Clinical implications</li>
+                        <li>Future research directions</li>
+                        <li>Broader field impact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">📅 5-Week Development Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <div class="week-title">Foundation Building</div>
+                        <div class="week-dates">August 15-22 • 60 minutes total</div>
+                        <ul>
+                            <li>Complete IMPACT structure template</li>
+                            <li>Fill out E-TRAIN integration checklist</li>
+                            <li>Share templates with buddy for initial feedback</li>
+                        </ul>
+                        <p style="margin-top: 10px; color: #10b981; font-weight: 600;">✅ Deliverable: Completed Template 1 shared with buddy</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <div class="week-title">Content Refinement</div>
+                        <div class="week-dates">August 22-29 • 45 minutes total</div>
+                        <ul>
+                            <li>Incorporate buddy feedback into structure</li>
+                            <li>Draft multiple opening hooks using Template 4</li>
+                            <li>Practice hooks with buddy to choose the strongest</li>
+                        </ul>
+                        <p style="margin-top: 10px; color: #10b981; font-weight: 600;">✅ Deliverable: Refined content with selected opening hook</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <div class="week-title">Practice & Timing</div>
+                        <div class="week-dates">August 29 - September 5 • 45 minutes total</div>
+                        <ul>
+                            <li>Record yourself delivering 10-minute version</li>
+                            <li>Practice opening hook until it's automatic</li>
+                            <li>Share recording with buddy for feedback</li>
+                        </ul>
+                        <p style="margin-top: 10px; color: #10b981; font-weight: 600;">✅ Deliverable: 10-minute practice recording</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content">
+                        <div class="week-title">Delivery Skills</div>
+                        <div class="week-dates">September 5-12 • 30 minutes total</div>
+                        <ul>
+                            <li>Practice full 15-minute version with whiteboard</li>
+                            <li>Plan your whiteboard layout and key drawings</li>
+                            <li>Final practice session with buddy</li>
+                        </ul>
+                        <p style="margin-top: 10px; color: #10b981; font-weight: 600;">✅ Deliverable: Whiteboard layout plan</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">5</div>
+                    <div class="timeline-content">
+                        <div class="week-title">Final Preparation</div>
+                        <div class="week-dates">September 12-19 • 15 minutes total</div>
+                        <ul>
+                            <li>Prepare responses to likely questions</li>
+                            <li>Final confidence-building practice</li>
+                            <li>Present your chalk talk on September 19!</li>
+                        </ul>
+                        <p style="margin-top: 10px; color: #10b981; font-weight: 600;">🎯 Deliverable: Final presentation ready!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">📝 Template 1: IMPACT Structure Builder</h2>
+            <div class="template-section">
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">I - IGNITE: Your Opening Hook (aim for 30-45 seconds)</label>
+                        <textarea class="form-textarea" placeholder="Write your attention-grabbing opening. Consider: What patient story, statistic, or question will immediately connect your audience to why your research matters?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">M - MAP: Problem & Knowledge Gap</label>
+                        <textarea class="form-textarea" placeholder="Define the problem you're addressing and the specific gap in current knowledge. What's missing that your research will fill?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">P - PRESENT: Your Two Aims (1-2 sentences each)</label>
+                        <input type="text" class="form-input" placeholder="Aim 1: [Brief description]" style="margin-bottom: 10px;">
+                        <input type="text" class="form-input" placeholder="Aim 2: [Brief description]">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">A - ADDRESS: First Aim Details</label>
+                        <textarea class="form-textarea" placeholder="Detailed methodology, expected outcomes, and potential alternative approaches for Aim 1."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">C - CONTINUE: Second Aim Details</label>
+                        <textarea class="form-textarea" placeholder="How Aim 2 builds on Aim 1, unique methodology, and anticipated outcomes."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">T - TRANSLATE: Broader Impact</label>
+                        <textarea class="form-textarea" placeholder="Clinical implications, future research directions, and broader impact on the field."></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="hook-generator">
+                <h2 style="margin-bottom: 20px;">🎣 Opening Hook Generator</h2>
+                <p style="margin-bottom: 20px;">Your opening hook is crucial - it sets the tone for your entire presentation. Try these proven approaches:</p>
+                
+                <div class="hook-approaches">
+                    <div class="hook-approach">
+                        <h4>📖 Patient Story</h4>
+                        <p>"A 45-year-old teacher came to our clinic with..."</p>
+                        <small>Use when your research has direct clinical relevance</small>
+                    </div>
+                    
+                    <div class="hook-approach">
+                        <h4>📊 Surprising Statistic</h4>
+                        <p>"Every 3 minutes, someone develops..."</p>
+                        <small>Great for highlighting the scope of the problem</small>
+                    </div>
+                    
+                    <div class="hook-approach">
+                        <h4>❓ Thought-Provoking Question</h4>
+                        <p>"What if I told you that the treatment we use..."</p>
+                        <small>Engages audience immediately</small>
+                    </div>
+                    
+                    <div class="hook-approach">
+                        <h4>🔬 Research Paradox</h4>
+                        <p>"Despite decades of research, we still don't understand..."</p>
+                        <small>Highlights important knowledge gaps</small>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <strong>💡 Pro Tip:</strong> Practice your hook until you can deliver it confidently without notes. This sets a strong foundation for the rest of your talk.
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">📋 Template 2: E-TRAIN Integration Checklist</h2>
+            <div class="template-section">
+                <div class="checkbox-item">
+                    <input type="checkbox" class="checkbox">
+                    <span>My research addresses a clinically relevant problem</span>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" class="checkbox">
+                    <span>I can explain my work to both specialists and general audiences</span>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" class="checkbox">
+                    <span>My aims are clearly distinct but complementary</span>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" class="checkbox">
+                    <span>I have backup plans if my primary approach doesn't work</span>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" class="checkbox">
+                    <span>I can connect my research to broader field implications</span>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" class="checkbox">
+                    <span>My opening hook is memorable and relevant</span>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" class="checkbox">
+                    <span>I can deliver each section within the time limits</span>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" class="checkbox">
+                    <span>My buddy has reviewed and provided feedback on my structure</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="presentation-day">
+            <h2 style="margin-bottom: 20px;">🎯 Presentation Day: September 19, 2024</h2>
+            <p style="font-size: 1.2em; margin-bottom: 20px;">
+                You'll present your 15-minute E-TRAIN practice chalk talk to the group, followed by Q&A and feedback.
+            </p>
+            
+            <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #2c3e50; margin-bottom: 15px;">What to Bring:</h3>
+                <ul style="text-align: left; max-width: 400px; margin: 0 auto;">
+                    <li>✅ Your confidence and enthusiasm</li>
+                    <li>✅ A few backup markers (different colors)</li>
+                    <li>✅ One page of brief notes (optional)</li>
+                    <li>✅ Responses to 3-4 anticipated questions</li>
+                </ul>
+            </div>
+            
+            <button class="btn" style="font-size: 1.1em; padding: 15px 30px;">
+                🚀 I'm Ready for Success!
+            </button>
+        </div>
+
+        <div style="text-align: center; color: white; margin-top: 40px; opacity: 0.8;">
+            <p>Northwestern University Feinberg School of Medicine</p>
+            <p>NUCATS E-TRAIN T32 Program</p>
+        </div>
+    </div>
+</body>
+</html>
